@@ -126,7 +126,7 @@
 	<div id = 'main-wrapper'>
 	
 	<div id = 'navheader'>
-	<div id = 'replay' class = 'initial'>Play &nbsp;<img src='mtcl1.github.io/drought/play.png'></div>
+	<div id = 'replay' class = 'initial'>Play &nbsp;<img src='mtcl1.github.io/play.png'></div>
 	<p><em>Crop Failure Due To Flood, Waterlogging, Landslides and Debris flow.</em></p>
 	<div class = 'clr'></div>
 	</div>
@@ -390,7 +390,7 @@
 				function replay() {
 					if (d3.select("#replay").classed("pause")) {
 						clearInterval(interval);
-						d3.select("#replay").attr("class", "play").html('Resume &nbsp;<img src="mtcl1.github.io/drought/play.png" />');
+						d3.select("#replay").attr("class", "play").html('Resume &nbsp;<img src="mtcl1.github.io/play.png" />');
 					}
 					else {
 					  if (currFieldIndex >= fields.length - 1) {
@@ -399,7 +399,7 @@
 						d3.select("#index" + currFieldIndex).classed("current", true);   
 					  }
 					  updateFill(currFieldIndex);
-					  d3.select("#replay").attr("class", "pause").html('Pause &nbsp;<img src="mtcl1.github.io/drought/pause.png" />');
+					  d3.select("#replay").attr("class", "pause").html('Pause &nbsp;<img src="mtcl1.github.io/pause.png" />');
 					  interval = setInterval(loop, 1000);
 					}
 				}				
@@ -408,7 +408,7 @@
 					if (currFieldIndex >= fields.length -1) {
 						clearInterval(interval);
 						currFieldIndex = fields.length - 1;
-						d3.select("#replay").attr("class", "play").html('Replay &nbsp;<img src="mtcl1.github.io/drought/play.png" />');
+						d3.select("#replay").attr("class", "play").html('Replay &nbsp;<img src="mtcl1.github.io/play.png" />');
 					} else {
 						currFieldIndex += 1;
 						d3.select("#timebrackets .current").classed("current", false);
