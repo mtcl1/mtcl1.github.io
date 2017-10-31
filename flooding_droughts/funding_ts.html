@@ -82,13 +82,16 @@
 						style: {
 							color: 'black',
 							fontSize:'12px'
-						}
-					},					
+						},
+						formatter: function() {
+						   return this.value + '%';
+						}						
+					},
 					opposite: true,
 					gridLineColor: null,
-					tickInterval: 1000,
-					min: 20000,
-					max: 22713,
+					tickInterval: 20,
+					min: 0,
+					max: 100,
 					visible: true,
 					title: {
 						text: 'Unit: 1,000 hectare'
@@ -160,10 +163,10 @@
 					type: 'area',
 					data: [null,	null,	null,	null,	0,	564.8,	1004.2,	937.5,	1159.3,	1892.1]
 					}, {
-					name: 'Flooded or waterlogging area under control (RHS)',
+					name: 'Percentage of cultivated land under protection (RHS)',
 					type: 'spline',
 					yAxis: 1,
-					data: [21376,	21419,	21425,	21584,	21692,	21722,	21857,	21943,	22369,	22713]
+					data: [null,	null,	null,	null,	34.6,	33.6,	31.5,	31.5,	31.7,	30.3]
 					}]
 			});
 		</script>
