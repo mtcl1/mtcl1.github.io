@@ -126,13 +126,17 @@
 	<div id = 'main-wrapper'>
 	
 	<div id = 'navheader'>
+	<!--
 	<div id = 'replay' class = 'initial'>Play &nbsp;<img src='play.png'></div>
-	<p><em>Crop Failure Due To Droughts.</em></p>
+	//-->
+	<p><em>Culumative Crop Failure Due To Droughts from 2006 to 2015.</em></p>
 	<div class = 'clr'></div>
+	<p><em>Click the province to see the tooltip which shows the time series of crop failure over years.</em></p>
 	</div>
 	
+	<!--
 	<div id = 'timebrackets'></div>
-	
+	//-->
 	<div id = 'map'></div>
 	
 	<div id="tooltip">
@@ -181,7 +185,7 @@
 			.attr('width', width)
 			.attr('height', height);
 					
-		var maxValue = 881.7;
+		var maxValue = 3500;
 		var minValue = 1;
 	
 	//	var color = d3.scaleQuantize()
@@ -242,7 +246,8 @@
 				var value = {};
 				
 				data.forEach(function(d){
-					value[d.Province] = +d[fields[currFieldIndex]];
+					//value[d.Province] = +d[fields[currFieldIndex]];
+					value[d.Province] = +d.Cumulative;
 					ValueByProvince.set(d.Province, d);
 				});
 				
@@ -302,10 +307,12 @@
 				function updateTooltip(){
 					
 					tooltip.select(".name").text(provinceSelected);
-					tooltip.select(".value").text('Crop Failure (1,000 hectares): ' + formatTotal(ValueByProvince.get(provinceSelected)[fields[currFieldIndex]]));					
+					//tooltip.select(".value").text('Crop Failure (1,000 hectares): ' + formatTotal(ValueByProvince.get(provinceSelected)[fields[currFieldIndex]]));					
+					tooltip.select(".value").text('10 Years Cumulative Crop Failure: ' + formatTotal(ValueByProvince.get(provinceSelected)['Cumulative']));
 					
 					data.forEach(function(d){
-						value[d.Province] = +d[fields[currFieldIndex]];
+						//value[d.Province] = +d[fields[currFieldIndex]];
+						value[d.Province] = +d['Cumulative'];
 						ValueByProvince.set(d.Province, d);
 					});					
 					
@@ -429,8 +436,13 @@
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
+						.attr("y", height - 240)
+						.text("Cumulative");					
+				legend.append("text")
+						.attr("class", "legend-header")
+						.attr("x", width - 80)
 						.attr("y", height - 225)
-						.text("Crop Failure")
+						.text("Crop Failure");
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
