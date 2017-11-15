@@ -364,7 +364,7 @@
 				function updateTooltip(){
 					
 					tooltip.select(".name").text(provinceSelected);
-					tooltip.select(".value").text('Crop Failure (1,000 hectares): ' + formatTotal(ValueByProvince.get(provinceSelected)[fields[currFieldIndex]]));					
+					tooltip.select(".value").text('10 Years Cumulative Crop Failure: ' + formatTotal(ValueByProvince.get(provinceSelected)['Cumulative']));					
 					
 					data.forEach(function(d){
 				//		value[d.Province] = +d[fields[currFieldIndex]];
