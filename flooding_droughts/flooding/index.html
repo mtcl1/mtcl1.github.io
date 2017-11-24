@@ -53,7 +53,7 @@
 		}		
 		
 		#main-wrapper{
-			width:960px;
+		//	width:960px;
 			margin:0 auto;
 		}
 		
@@ -120,6 +120,21 @@
 			font-size:11px;
 			font-family:Helvetica,sans-serif;
 		}
+		
+		.svg-container {
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			padding-bottom: 70%;
+			vertical-align: top;
+			overflow: hidden;
+		}
+		.svg-content {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}		
 	</style>
 </head>
 <body>
@@ -137,7 +152,7 @@
 	<!--
 	<div id = 'timebrackets'></div>
 	//-->
-	<div id = 'map'></div>
+	<div id = 'map' class="svg-container"></div>
 	
 	<div id="tooltip">
 	<h3 class="name"></h3>
@@ -182,8 +197,9 @@
 					
 		var svg = d3.select('#map')
 			.append('svg')
-			.attr('width', width)
-			.attr('height', height);
+			  .attr("preserveAspectRatio", "xMinYMin meet")
+			  .attr("viewBox", "0 0 960 700")
+			  .classed("svg-content", true);
 					
 		var maxValue = 1600;
 		var minValue = 1;
@@ -240,7 +256,7 @@
 				.style("text-anchor", "end")
 				.text("Rate");			
 						
-		d3.json('simplified_smoothed_provinces.json', function(error, provinces){
+		d3.json('simplified_provinces.json', function(error, provinces){
 			d3.csv('flooding_crop_failure.csv', function(error, data){
 				
 				var value = {};
@@ -426,13 +442,13 @@
 				
 				var legend = svg.append("g")
 								.attr("class", "legend");
-			//	legend.append("rect")
-			//			.attr("x", width - 95)
-			//			.attr("y", height - 245)
-			//			.attr("width", 95)
-			//			.attr("height", 180)
-			//			.attr("fill", "#ffffff")
-			//			.attr("opacity", 0.9);
+				legend.append("rect")
+						.attr("x", width - 95)
+						.attr("y", height - 245)
+						.attr("width", 95)
+						.attr("height", 180)
+						.attr("fill", "#ffffff")
+						.attr("opacity", 0.9);
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
