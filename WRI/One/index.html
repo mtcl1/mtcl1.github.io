@@ -53,7 +53,7 @@
 		}		
 		
 		#main-wrapper{
-			width:960px;
+		//	width:960px;
 			margin:0 auto;
 		}
 		
@@ -122,6 +122,12 @@
 			font-family:Arial;
 		}
 		
+		.legend2 .legend2-header{
+			font-family:Arial;
+			font-weight:bold;
+			font-size:12px;
+		}
+		
 		.legend2 .legend2-bubble {
 		  fill: none;
 		  stroke: black;
@@ -146,6 +152,27 @@
 		#bubble {
 		  fill-opacity: 0.8;
 		  stroke-width: 0px;
+		}
+
+		#bubble-text {
+			font-family:Arial Narrow;
+			font-size:11px;
+			text-anchor, middle;
+		}
+		
+		.svg-container {
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			padding-bottom: 70%;
+			vertical-align: top;
+			overflow: hidden;
+		}
+		.svg-content {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			left: 0;
 		}		
 	</style>
 </head>
@@ -164,7 +191,7 @@
 	<div id = 'timebrackets'></div>
 	//-->
 	
-	<div id = 'map'></div>
+	<div id = 'map' class="svg-container"></div>
 	
 	<div id="tooltip">
 	<h3 class="name"></h3>
@@ -212,9 +239,10 @@
 					.projection(projection);
 					
 		var svg = d3.select('#map')
-			.append('svg')
-			.attr('width', width)
-			.attr('height', height);
+					.append('svg')
+			  .attr("preserveAspectRatio", "xMinYMin meet")
+			  .attr("viewBox", "0 0 960 700")
+			  .classed("svg-content", true);
 					
 		var maxValue = 2900;
 		var minValue = 1;
@@ -227,7 +255,7 @@
 		
 		var colorBubble = d3.scaleLinear()
 						.domain([minValue, maxValue])
-						.range(["#CFD8DC", "#263238"])
+						.range(["#CFD8DC"])
 						.interpolate(d3.interpolateHcl);
 
 		var colorWri = d3.scaleLinear()
@@ -327,6 +355,14 @@
 										return colorBubble(value[d.properties.NAME_1]);
 										});
 				
+				svg.selectAll('#bubble-text')
+					.data(provinces.features)
+					.enter()
+					.append('text')
+					.attr('id', 'bubble-text')
+					.attr("dx", "-15")
+					.attr('transform', function(d) { return 'translate(' + path.centroid(d) + ')'; })
+					.text(function(d) { return d.properties.NAME_1; });							
 					
 					svg.selectAll('#bubble')
 						.on('mouseover', function(d){
@@ -484,8 +520,8 @@
 					}
 				}
 				
-				var legend = svg.append("g")
-								.attr("class", "legend");
+			//	var legend = svg.append("g")
+			//					.attr("class", "legend");
 			//	legend.append("rect")
 			//			.attr("x", width - 95)
 			//			.attr("y", height - 245)
@@ -493,47 +529,59 @@
 			//			.attr("height", 180)
 			//			.attr("fill", "#ffffff")
 			//			.attr("opacity", 0.9);
-				legend.append("text")
-						.attr("class", "legend-header")
-						.attr("x", width - 80)
-						.attr("y", height - 225)
-						.text("Crop Failure")
-				legend.append("text")
-						.attr("class", "legend-header")
-						.attr("x", width - 80)
-						.attr("y", height - 210)
-						.text("(1,000 ha)");
+			//	legend.append("text")
+			//			.attr("class", "legend-header")
+			//			.attr("x", width - 80)
+			//			.attr("y", height - 225)
+			//			.text("Crop Failure")
+			//	legend.append("text")
+			//			.attr("class", "legend-header")
+			//			.attr("x", width - 80)
+			//			.attr("y", height - 210)
+			//			.text("(1,000 ha)");
 
-				legend.selectAll(".legend-square")
-						.data([minValue, (maxValue - minValue) / 4, (maxValue - minValue) / 3, (maxValue - minValue) / 2, maxValue])
-						.enter()
-						.append("rect")
-						.attr("x", width - 80)
-						.attr("y", function(d, i) { return height - i * 15 - 145; })
-						.attr("class", "legend-square")
-						.attr("width", 15)
-						.attr("height", 15)
-						.style("fill", function(d) { return colorBubble(d); })
+			//	legend.selectAll(".legend-square")
+			//			.data([minValue, (maxValue - minValue) / 4, (maxValue - minValue) / 3, (maxValue - minValue) / 2, maxValue])
+			//			.enter()
+			//			.append("rect")
+			//			.attr("x", width - 80)
+			//			.attr("y", function(d, i) { return height - i * 15 - 145; })
+			//			.attr("class", "legend-square")
+			//			.attr("width", 15)
+			//			.attr("height", 15)
+			//			.style("fill", function(d) { return colorBubble(d); })
 						
-				legend.selectAll(".legend-label")
-						.data([minValue, maxValue])
-						.enter()
-						.append("text")
-						.attr("class", "legend-label")
-						.attr("x", width - 60)
-						.attr("y", function(d, i) { return height - i * (15 * 4) - 145 + 15; })
-						.text(function(d) { return formatTotal(d); });
+			//	legend.selectAll(".legend-label")
+			//			.data([minValue, maxValue])
+			//			.enter()
+			//			.append("text")
+			//			.attr("class", "legend-label")
+			//			.attr("x", width - 60)
+			//			.attr("y", function(d, i) { return height - i * (15 * 4) - 145 + 15; })
+			//			.text(function(d) { return formatTotal(d); });
 					
 				var legend2 = svg.append("g")
 									.attr("class", "legend2");
 									
+					legend2.append("text")
+							.attr("class", "legend2-header")
+							.attr("x", width - 95)
+							.attr("y", height - 300)
+							.text("Crop Failure");		
+									
+					legend2.append("text")
+							.attr("class", "legend2-header")
+							.attr("x", width - 88)
+							.attr("y", height - 287)
+							.text("(1,000 ha)");	
+							
 					legend2.selectAll(".legend2-bubble")
 								.data([minValue, (maxValue + minValue) / 3, maxValue])
 								.enter()
 								.append("circle")
 								.attr("class", "legend2-bubble")								
 								.attr("cx", width - 60)
-								.attr("cy", function(d) { return height - radius(d) - 270; })
+								.attr("cy", function(d) { return height - radius(d) - 162; })
 								.attr("r", function(d) { return radius(d); });
 								
 					legend2.selectAll(".legend2-label")
@@ -542,7 +590,7 @@
 								.append("text")
 								.attr("class", "legend2-label")
 								.attr("x", width - 65)
-								.attr("y", function(d) { return (height - 2 * radius(d) - 270) - 1; })
+								.attr("y", function(d) { return (height - 2 * radius(d) - 162) - 1; })
 								.text(d3.format(".1s"));
 				
 				var legend3 = svg.append("g")
@@ -551,7 +599,7 @@
 					legend3.append("text")
 							.attr("class", "legend3-header")
 							.attr("x", width - 80)
-							.attr("y", height - 107)
+							.attr("y", height - 125)
 							.text("Water Stress");									
 									
 					
@@ -561,7 +609,7 @@
 								.append("rect")
 								.attr("class", "legend3-square")
 								.attr("x", width - 80)
-								.attr("y", function(d, i) { return height - i * 15 - 30; })
+								.attr("y", function(d, i) { return height - i * 15 - 45; })
 								.attr("width", 15)
 								.attr("height", 15)
 								.style("fill", function(d) { return colorWri(d); });	
@@ -572,7 +620,7 @@
 							.append("text")
 							.attr("class", "legend3-label")
 							.attr("x", width - 60)
-							.attr("y", function(d, i) { return height - i * (15 * 5) - 30 + 15; })
+							.attr("y", function(d, i) { return height - i * (15 * 5) - 45 + 15; })
 							.text(function(d) { return d; });							
 					
 				
