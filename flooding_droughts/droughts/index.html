@@ -256,7 +256,7 @@
 				.style("text-anchor", "end")
 				.text("Rate");			
 						
-		d3.json('simplified_provinces.json', function(error, provinces){
+		d3.json('simplified_smoothed_provinces.json', function(error, provinces){
 			d3.csv('drought_crop_failure.csv', function(error, data){
 				
 				var value = {};
