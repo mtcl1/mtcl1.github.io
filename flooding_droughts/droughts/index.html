@@ -2,8 +2,8 @@
 <html lang='en'>
 <head>
 	<meta charset = 'utf-8'>
-	<title>Map</title>
-	<script type="text/javascript" src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js"></script> 
+	<title>Crop Failure - Droughts</title>
+	<script type = 'text/javascript' src='https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js'></script> 
 	<script type = 'text/javascript' src='https://d3js.org/d3.v4.min.js'></script>
 	<script type = 'text/javascript' src='https://d3js.org/topojson.v1.min.js'></script>
 	<style type = 'text/css'>
@@ -14,7 +14,7 @@
 			width:200px;
 			padding:10px;
 			font-size:10px;
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			background:#ffffff;
 			pointer-events:none;
 		//	opacity:0;
@@ -36,7 +36,7 @@
 		}
 		
 		.x-axis text{
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			font-size:10px;
 		}	
 		
@@ -45,7 +45,7 @@
 		}
 		
 		.y-axis text{
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			font-size:10px;
 		}	
 		
@@ -77,7 +77,7 @@
 			font-size:15px;
 			line-height:1.2em;
 			padding:5px;
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			border:1px solid #fff;
 			cursor:pointer;
 		}
@@ -90,7 +90,7 @@
 		
 		#replay {
 			float:left;
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			font-size:0.8em;
 			text-transform:uppercase;
 			cursor:pointer;
@@ -112,14 +112,14 @@
 		}
 		
 		.legend .legend-header{
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			font-weight:bold;
 			font-size:12px;
 		}
 
 		.legend .tick-label{
 			font-size:11px;
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 		}
 		
 		.svg-container {
@@ -145,9 +145,8 @@
 	<!--
 	<div id = 'replay' class = 'initial'>Play &nbsp;<img src='play.png'></div>
 	//-->
-	<p><em>Culumative Crop Failure Due To Droughts from 2006 to 2015.</em></p>
+	<p style = 'font-size: 25px'><b>Culumative Crop Failure Due To Droughts</b><br><font size='4'>From 2006 to 2015</font></p>
 	<div class = 'clr'></div>
-	<p><em>Click the province to see the tooltip which shows the time series of crop failure over years.</em></p>
 	</div>
 	
 	<!--
@@ -160,7 +159,8 @@
 	<div class="value"></div>
 	<div class="year-chart"></div>
 	</div>
-	
+	<footer><em>Source: China Environment Statistical Yearbook</em><br><em>Note: Taiwan Province, HKSAR, MSAR and South China Sea are not shown because of no data</em>
+	</footer>
 	</div>
 
 
