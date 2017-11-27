@@ -2,9 +2,10 @@
 <html lang='en'>
 <head>
 	<meta charset = 'utf-8'>
-	<title>Map</title>
+	<title>WRI Bubble Map</title>
+	<script type = 'text/javascript' src='https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js'></script>
 	<script type = 'text/javascript' src='https://d3js.org/d3.v4.min.js'></script>
-	<script type = 'text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
+	<script type = 'text/javascript' src='https://d3js.org/topojson.v1.min.js'></script>
 	<style type = 'text/css'>
 	
 		#tooltip{
@@ -157,7 +158,7 @@
 		#bubble-text {
 			font-family:Arial Narrow;
 			font-size:11px;
-			text-anchor, middle;
+			text-anchor: middle;
 		}
 		
 		.svg-container {
@@ -293,7 +294,7 @@
 								
 		var radius = d3.scaleSqrt()
 						.domain([minValue, maxValue])
-						.range([10, 55]);								
+						.range([5, 50]);								
 								
 		yearChart.append("g")
 				.attr("class", "x-axis")
@@ -339,8 +340,8 @@
 					.attr('id', 'province')
 					.attr('d', path)
 					.style('fill', 'transparent')
-					.style('stroke', 'black')
-					.style('stroke-width', 0);
+					.style('stroke', '#CFD8DC')
+					.style('stroke-width', 1);
 					
 				svg.selectAll('#bubble')
 					.data(provinces.features)
@@ -360,7 +361,6 @@
 					.enter()
 					.append('text')
 					.attr('id', 'bubble-text')
-					.attr("dx", "-15")
 					.attr('transform', function(d) { return 'translate(' + path.centroid(d) + ')'; })
 					.text(function(d) { return d.properties.NAME_1; });							
 					
@@ -566,13 +566,13 @@
 					legend2.append("text")
 							.attr("class", "legend2-header")
 							.attr("x", width - 95)
-							.attr("y", height - 300)
+							.attr("y", height - 287)
 							.text("Crop Failure");		
 									
 					legend2.append("text")
 							.attr("class", "legend2-header")
-							.attr("x", width - 88)
-							.attr("y", height - 287)
+							.attr("x", width - 87)
+							.attr("y", height - 274)
 							.text("(1,000 ha)");	
 							
 					legend2.selectAll(".legend2-bubble")
