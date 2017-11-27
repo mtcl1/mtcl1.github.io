@@ -2,9 +2,10 @@
 <html lang='en'>
 <head>
 	<meta charset = 'utf-8'>
-	<title>Map</title>
+	<title>Crop Failure - Flooding</title>
+	<script type = 'text/javascript' src='https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js'></script> 
 	<script type = 'text/javascript' src='https://d3js.org/d3.v4.min.js'></script>
-	<script type = 'text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
+	<script type = 'text/javascript' src='https://d3js.org/topojson.v1.min.js'></script>
 	<style type = 'text/css'>
 	
 		#tooltip{
@@ -442,13 +443,7 @@
 				
 				var legend = svg.append("g")
 								.attr("class", "legend");
-				legend.append("rect")
-						.attr("x", width - 95)
-						.attr("y", height - 245)
-						.attr("width", 95)
-						.attr("height", 180)
-						.attr("fill", "#ffffff")
-						.attr("opacity", 0.9);
+
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
