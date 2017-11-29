@@ -358,18 +358,18 @@
 										return colorBubble(value[d.properties.NAME_1]);
 										});
 				
-				svg.selectAll('#bubble-text')
-					.data(provinces.features)
-					.enter()
-					.append('text')
-					.attr('id', 'bubble-text')
-					.attr('transform', function(d) { return 'translate(' + path.centroid(d) + ')'; })
-					.text(function(d) { return d.properties.NAME_1; });	
+		//		svg.selectAll('#bubble-text')
+		//			.data(provinces.features)
+		//			.enter()
+		//			.append('text')
+		//			.attr('id', 'bubble-text')
+		//			.attr('transform', function(d) { return 'translate(' + path.centroid(d) + ')'; })
+		//			.text(function(d) { return d.properties.NAME_1; });	
 					
 					svg.selectAll('#bubble')
 						.on('mouseover', function(d){
 								d3.select(this)
-									.style('fill', '#eee');
+									.style('fill', '#DDDDDD');
 								tooltip.transition()
 										.duration(100)
 										.style('opacity', 0.8);
