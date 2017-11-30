@@ -562,86 +562,86 @@
 			//			.attr("y", function(d, i) { return height - i * (15 * 4) - 145 + 15; })
 			//			.text(function(d) { return formatTotal(d); });
 					
-				var legend2 = svg.append("g")
-									.attr("class", "legend2");
+			//	var legend2 = svg.append("g")
+			//						.attr("class", "legend2");
 					
-					legend2.append("text")
-							.attr("class", "legend2-header")
-							.attr("x", width - 87)
-							.attr("y", height - 290)
-							.text("(Demand)");	
+			//		legend2.append("text")
+			//				.attr("class", "legend2-header")
+			//				.attr("x", width - 87)
+			//				.attr("y", height - 290)
+			//				.text("(Demand)");	
 
-					legend2.append("text")
-							.attr("class", "legend2-header")
-							.attr("x", width - 87)
-							.attr("y", height - 275)
-							.text("Agricultural");		
+			//		legend2.append("text")
+			//				.attr("class", "legend2-header")
+			//				.attr("x", width - 87)
+			//				.attr("y", height - 275)
+			//				.text("Agricultural");		
 							
-					legend2.append("text")
-							.attr("class", "legend2-header")
-							.attr("x", width - 87)
-							.attr("y", height - 260)
-							.text("Water Use per");								
+			//		legend2.append("text")
+			//				.attr("class", "legend2-header")
+			//				.attr("x", width - 87)
+			//				.attr("y", height - 260)
+			//				.text("Water Use per");								
 									
-					legend2.append("text")
-							.attr("class", "legend2-header")
-							.attr("x", width - 87)
-							.attr("y", height - 245)
-							.text(" Sown Area");	
+			//		legend2.append("text")
+			//				.attr("class", "legend2-header")
+			//				.attr("x", width - 87)
+			//				.attr("y", height - 245)
+			//				.text(" Sown Area");	
 							
-					legend2.selectAll(".legend2-bubble")
-								.data([minValue, (maxValue + minValue) / 3, maxValue])
-								.enter()
-								.append("circle")
-								.attr("class", "legend2-bubble")								
-								.attr("cx", width - 60)
-								.attr("cy", function(d) { return height - radius(d) - 158; })
-								.attr("r", function(d) { return radius(d); });
+			//		legend2.selectAll(".legend2-bubble")
+			//					.data([minValue, (maxValue + minValue) / 3, maxValue])
+			//					.enter()
+			//					.append("circle")
+			//					.attr("class", "legend2-bubble")								
+			//					.attr("cx", width - 60)
+			//					.attr("cy", function(d) { return height - radius(d) - 158; })
+			//					.attr("r", function(d) { return radius(d); });
 								
-					legend2.selectAll(".legend2-label")
-								.data([minValue, (maxValue + minValue) / 3, maxValue])
-								.enter()
-								.append("text")
-								.attr("class", "legend2-label")
-								.attr("x", width - 65)
-								.attr("y", function(d) { return (height - 2 * radius(d) - 158) - 1; })
-								.text(function(d) { return formatTotal(d)});
+			//		legend2.selectAll(".legend2-label")
+			//					.data([minValue, (maxValue + minValue) / 3, maxValue])
+			//					.enter()
+			//					.append("text")
+			//					.attr("class", "legend2-label")
+			//					.attr("x", width - 65)
+			//					.attr("y", function(d) { return (height - 2 * radius(d) - 158) - 1; })
+			//					.text(function(d) { return formatTotal(d)});
 				
-				var legend3 = svg.append("g")
-									.attr("class", "legend3")
+			//	var legend3 = svg.append("g")
+			//						.attr("class", "legend3")
+			//						
+			//		legend3.append("text")
+			//				.attr("class", "legend3-header")
+			//				.attr("x", width - 80)
+			//				.attr("y", height - 95)
+			//				.text("(Supply)");									
 									
-					legend3.append("text")
-							.attr("class", "legend3-header")
-							.attr("x", width - 80)
-							.attr("y", height - 95)
-							.text("(Supply)");									
-									
-					legend3.append("text")
-							.attr("class", "legend3-header")
-							.attr("x", width - 80)
-							.attr("y", height - 80)
-							.text("Water Stress");									
+			//		legend3.append("text")
+			//				.attr("class", "legend3-header")
+			//				.attr("x", width - 80)
+			//				.attr("y", height - 80)
+			//				.text("Water Stress");									
 									
 					
-					legend3.selectAll(".legend3-square")
-								.data([3, 2, 1])
-								.enter()
-								.append("rect")
-								.attr("class", "legend3-square")
-								.attr("x", width - 80)
-								.attr("y", function(d, i) { return height - i * 15 - 45; })
-								.attr("width", 15)
-								.attr("height", 15)
-								.style("fill", function(d) { return colorDry(d); });		
+			//		legend3.selectAll(".legend3-square")
+			//					.data([3, 2, 1])
+			//					.enter()
+			//					.append("rect")
+			//					.attr("class", "legend3-square")
+			//					.attr("x", width - 80)
+			//					.attr("y", function(d, i) { return height - i * 15 - 45; })
+			//					.attr("width", 15)
+			//					.attr("height", 15)
+			//					.style("fill", function(d) { return colorDry(d); });		
 
-					legend3.selectAll(".legend3-label")
-							.data(['Safe 11', 'At Risk 9', 'Dry 11'])
-							.enter()
-							.append("text")
-							.attr("class", "legend3-label")
-							.attr("x", width - 60)
-							.attr("y", function(d, i) { return height - i * 15 - 45 + 12; })
-							.text(function(d) { return d; });							
+			//		legend3.selectAll(".legend3-label")
+			//				.data(['Safe 11', 'At Risk 9', 'Dry 11'])
+			//				.enter()
+			//				.append("text")
+			//				.attr("class", "legend3-label")
+			//				.attr("x", width - 60)
+			//				.attr("y", function(d, i) { return height - i * 15 - 45 + 12; })
+			//				.text(function(d) { return d; });							
 					
 				
 				console.log(value);
