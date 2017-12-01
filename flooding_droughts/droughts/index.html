@@ -150,7 +150,7 @@
 	<!--
 	<div id = 'replay' class = 'initial'>Play &nbsp;<img src='play.png'></div>
 	//-->
-	<p style = 'font-size: 25px'><b>Cumulative Crop Failure Due To Droughts</b><br><font size='4'>From 2007 to 2016</font></p>
+	<p style = 'font-size: 20px'><b>Cumulative Crop Failure Due To Droughts</b><br><font size='4'>From 2006 to 2015</font></p>
 	<div class = 'clr'></div>
 	</div>
 	
@@ -164,7 +164,8 @@
 	<div class="value"></div>
 	<div class="year-chart"></div>
 	</div>
-	<footer><em>Sources: China Environment Statistical Yearbook, China Statistical Yearbook</em><br><em>Note: Taiwan Province, HKSAR, MSAR and South China Sea are not shown because of no data</em>
+	<footer><font size='3'><em>Source: China Environment Statistical Yearbook</em><br><em>Note: Taiwan Province, HKSAR, MSAR and South China Sea are not shown because of no data</em>
+	</font>
 	</footer>
 	</div>
 
@@ -172,7 +173,7 @@
 	<script type = 'text/javascript'>
 		var ValueByProvince = d3.map();
 		
-		var fields = ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'];
+		var fields = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'];
 		var currFieldIndex = 0;
 	
 		d3.select('#timebrackets')
@@ -207,7 +208,7 @@
 			  .attr("viewBox", "0 0 960 700")
 			  .classed("svg-content", true);
 					
-		var maxValue = 3100;
+		var maxValue = 2900;
 		var minValue = 1;
 	
 	//	var color = d3.scaleQuantize()
@@ -232,7 +233,7 @@
 					   .range([chartHeight, 0]);
 	   
 		var xAxis = d3.axisBottom(xScale)
-						.tickValues(['2007', '2011', '2016'])
+						.tickValues(['2006', '2011', '2015'])
 						.tickSize(5);
 		
 		var yAxis = d3.axisLeft(yScale)
@@ -260,7 +261,9 @@
 				.attr("y", 0)
 				.attr("dy", "0")
 				.style("text-anchor", "end")
-				.text("Rate");			
+				.text("Rate");
+		
+		var tooltipWidth = document.getElementById('map').offsetWidth;
 						
 		d3.json('simplified_smoothed_provinces.json', function(error, provinces){
 			d3.csv('drought_crop_failure.csv', function(error, data){
@@ -296,7 +299,7 @@
 							tooltip.transition()
 									.duration(100)
 									.style('opacity', 0.8);
-						   if (d3.event.pageX > (width - 320)) {
+						   if (d3.event.pageX > (tooltipWidth - 320)) {
 							   tooltip.style("left", (d3.event.pageX - 250) + "px");
 						   } else {
 							   tooltip.style("left", (d3.event.pageX + 30) + "px")
