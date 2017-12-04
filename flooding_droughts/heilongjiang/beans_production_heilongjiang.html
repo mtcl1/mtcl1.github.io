@@ -8,7 +8,7 @@
 		<style type="text/css">
 
 			#container {
-			//	min-width: 300px;
+				min-width: 300px;
 				height: 400px;
 				margin: 0 auto;
 			}
@@ -143,12 +143,36 @@
 					name: 'Severe Crop Failure due to Flooding',
 					type: 'column',
 					yAxis: 1,					
-					data: [0, 0, 0, 0, 0, 0, 0, 35, 0, 0]
+					data: [0, 0, 0, 0, 0, 0, 0, {y: 35,
+								dataLabels: {
+									enabled: true,
+									format: 'First in<br>2013',
+									color: '#094677',
+									style: {
+										color: '#094677',
+										fontSize: '15px',
+										textOutline: false ,
+										fontWeight: 'bold'
+									},
+									y: -120
+								}}, 0, 0]
 				}, {				
 					name: 'Severe Crop Failure due to Droughts',
 					type: 'column',
 					yAxis: 1,					
-					data: [0, 35, 0, 0, 0, 0, 0, 0, 0, 0]
+					data: [0, {y: 35,
+								dataLabels: {
+									enabled: true,
+									format: 'Second<br>in 2007',
+									color: '#9F171E',
+									style: {
+										color: '#9F171E',
+										fontSize: '15px',
+										textOutline: false ,
+										fontWeight: 'bold'
+									},
+									y: -120
+								}}, 0, 0, 0, 0, 0, 0, 0, 0]
 				}, {
 					name: 'Beans Production',
 					type: 'line',			
