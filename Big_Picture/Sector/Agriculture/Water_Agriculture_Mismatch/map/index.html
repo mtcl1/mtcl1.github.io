@@ -342,7 +342,7 @@
 					.style('fill', function(d){
 												return colorDry(valueDry[d.properties.NAME_1]);
 										})
-					.style('stroke', 'white')
+					.style('stroke', 'white')	 
 					.style('stroke-width', 0.5);
 					
 				svg.selectAll('#bubble')
@@ -354,9 +354,17 @@
 					.attr('r', function(d){
 										return radius(value[d.properties.NAME_1]);
 										})
-					.style('fill', function(d) {
+					.style('fill', function(d){
+									if(d.properties.NAME_1=='Jiangsu' || d.properties.NAME_1=='Henan' || d.properties.NAME_1=='Shandong'|| d.properties.NAME_1=='Hebei'){
+										return '#CADC4F'; 
+									}else{
 										return colorBubble(value[d.properties.NAME_1]);
-										});
+									}
+									});
+					
+					
+					
+										
 				
 		//		svg.selectAll('#bubble-text')
 		//			.data(provinces.features)
@@ -391,8 +399,12 @@
 						.on('mouseout', function(d){
 								d3.select(this)
 									.style('fill', function(d){
-													return colorBubble(value[d.properties.NAME_1]);
-											});
+									if(d.properties.NAME_1=='Jiangsu' || d.properties.NAME_1=='Henan' || d.properties.NAME_1=='Shandong'|| d.properties.NAME_1=='Hebei'){
+										return '#CADC4F'; 
+									}else{
+										return colorBubble(value[d.properties.NAME_1]);
+									}
+									});
 								tooltip.transition()
 										.duration(100)
 										.style('opacity', 0);
