@@ -419,7 +419,7 @@
 				function updateTooltip(){
 					
 					tooltip.select(".name").text(provinceSelected);
-					tooltip.select(".value").text('2016 Agricultural water use per sown area: ' + formatTotal(ValueByProvince.get(provinceSelected)['Cumulative']));					
+					tooltip.select(".value").text('2016 Total Sown Area: ' + formatTotal(ValueByProvince.get(provinceSelected)['Cumulative']) + ' (1,000 ha)');					
 					
 					data.forEach(function(d){
 				//		value[d.Province] = +d[fields[currFieldIndex]];
@@ -449,7 +449,7 @@
 								return chartHeight - yScale(d.value) })								
 								.attr("fill", function(d) { 
 									if(d){
-										return colorBubble(d.value); 
+										return '#CADC4F'; 
 									}else{
 										return '#eee';
 									}
@@ -463,7 +463,7 @@
 								.attr("height", function(d) { return chartHeight - yScale(d.value) })
 								.attr("fill", function(d) {
 									if(d){
-										return colorBubble(d.value); 
+										return '#CADC4F'; 
 									}else{
 										return '#eee';
 									}
