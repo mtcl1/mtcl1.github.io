@@ -156,7 +156,7 @@
 		
 		#bubble {
 		  fill-opacity: 0.8;
-		  stroke-width: 0px;
+		  stroke-opacity: 1;
 		}
 
 		#bubble-text {
@@ -354,14 +354,23 @@
 					.attr('r', function(d){
 										return radius(value[d.properties.NAME_1]);
 										})
-					.style('fill', function(d){
+					.style('fill', function(d) {
+										return colorBubble(value[d.properties.NAME_1])
+										})
+					.style('stroke', function(d){
 									if(d.properties.NAME_1=='Jiangsu' || d.properties.NAME_1=='Henan' || d.properties.NAME_1=='Shandong'|| d.properties.NAME_1=='Hebei'){
 										return '#CADC4F'; 
 									}else{
 										return colorBubble(value[d.properties.NAME_1]);
 									}
-									});
-					
+									})
+					.style('stroke-width', function(d){
+									if(d.properties.NAME_1=='Jiangsu' || d.properties.NAME_1=='Henan' || d.properties.NAME_1=='Shandong'|| d.properties.NAME_1=='Hebei'){
+										return 3; 
+									}else{
+										return 0;
+									}
+									});					
 					
 					
 										
@@ -398,13 +407,9 @@
 						})
 						.on('mouseout', function(d){
 								d3.select(this)
-									.style('fill', function(d){
-									if(d.properties.NAME_1=='Jiangsu' || d.properties.NAME_1=='Henan' || d.properties.NAME_1=='Shandong'|| d.properties.NAME_1=='Hebei'){
-										return '#CADC4F'; 
-									}else{
-										return colorBubble(value[d.properties.NAME_1]);
-									}
-									});
+									.style('fill', function(d) {
+										return colorBubble(value[d.properties.NAME_1])
+										});
 								tooltip.transition()
 										.duration(100)
 										.style('opacity', 0);
