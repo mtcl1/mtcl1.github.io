@@ -80,7 +80,8 @@
 				tooltip: {
 					headerFormat: '<b>{point.x}</b><br/>',
 					pointFormat: '{point.y:.1f}%',
-					borderColor: 'black'
+					borderColor: 'black',
+					hideDelay: 0
 				},
 				legend: {
 					enabled: false
@@ -96,6 +97,7 @@
 					}
 				},
 				series: [{
+					stickyTracking: false,
 					data: [
 					{y: 43.29, color: '#D3D6DB'},
 					{y: 13.36, color: '#415F9D'},
