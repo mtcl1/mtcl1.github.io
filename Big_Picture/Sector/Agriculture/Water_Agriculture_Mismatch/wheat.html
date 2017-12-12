@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<title>2016 Wheat</title>
 		<style type="text/css">
 			#container {
@@ -10,8 +11,8 @@
 				height: 100px;
 				margin: 0 auto;
 				position:absolute;
-				left:0px;
-				top:0px;
+				left:30px;
+				top:30px;
 			}
 			#addText {
 				position:absolute;
@@ -26,6 +27,7 @@
 		<div id="addText"></div>
 	
 		<script type="text/javascript">
+		$(function() {
 			var chart = new Highcharts.chart('container', {
 													credits: {
 														enabled: false
@@ -78,7 +80,22 @@
 																{name: 'Safe 11', y: 10.49, color: '#233B6E'}
 														]
 													}]
+			},
+			function(chart) { // on complete
+				var textX = chart.plotLeft +30+ (chart.plotWidth  * 0.5);
+				var textY = chart.plotTop  +30+ (chart.plotHeight * 0.5);
+
+				var span = '<span id="pieChartInfoText" style="position:absolute; text-align:center; font-family: Arial; color:#233B6E;">';
+				span += '<span style="font-size: 10px">Wheat</span><br>';
+			//	span += '<span style="font-size: 16px">Output in 2016</span>';
+				span += '</span>';
+
+				$("#addText").append(span);
+				span = $('#pieChartInfoText');
+				span.css('left', textX + (span.width() * -0.5));
+				span.css('top', textY + (span.height() * -0.5));
 			});				
+		});
 		
 		</script>
 	</body>
