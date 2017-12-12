@@ -11,8 +11,8 @@
 				height: 100px;
 				margin: 0 auto;
 				position:absolute;
-				left:0px;
-				top:0px;
+				left:30px;
+				top:30px;
 			}
 			#addText {
 				position:absolute;
@@ -82,8 +82,8 @@
 													}]
 			},
 			function(chart) { // on complete
-				var textX = chart.plotLeft + (chart.plotWidth  * 0.5);
-				var textY = chart.plotTop  + (chart.plotHeight * 0.5);
+				var textX = chart.plotLeft +30+ (chart.plotWidth  * 0.5);
+				var textY = chart.plotTop  +30+ (chart.plotHeight * 0.5);
 
 				var span = '<span id="pieChartInfoText" style="position:absolute; text-align:center; font-family: Arial; color:#233B6E;">';
 				span += '<span style="font-size: 10px">Rice</span><br>';
