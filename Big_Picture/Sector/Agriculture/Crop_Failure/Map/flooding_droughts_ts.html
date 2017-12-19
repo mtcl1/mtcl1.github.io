@@ -80,7 +80,8 @@
 				tooltip: {
 					headerFormat: '<b>{series.name}</b><br/>',
 					pointFormat: '{point.x}: {point.y:.1f}',
-					borderColor: 'black'
+					borderColor: 'black',
+					hideDelay: 0
 				},
 		//		labels: {
 		//			items: [{
@@ -128,11 +129,12 @@
 						label: {
 							connectorAllowed: false
 						},
-						pointStart: 2007
+						pointStart: 2007,
+						stickyTracking: false
 					},
 					spline: {
-						animation: false,
-						enableMouseTracking: false,
+					//	animation: false,
+					//	enableMouseTracking: false,
 						marker: {
 							enabled: false
 						}
