@@ -7,10 +7,12 @@
 		<style type="text/css">
 			#container {
 			//	min-width: 300px;
-				height: 400px;
+				height: 300px;
 				margin: 0 auto;
 			}
-			
+			footer {
+				font-family:Arial;
+			}			
 		</style>
 	</head>
 	<body>
@@ -24,7 +26,8 @@
 				chart: {
 					type: 'pie',
 					style: {
-						fontFamily: 'Arial'
+						fontFamily: 'Arial',
+						fontSize: '10px'
 					},
 					spacingTop: 0,
 					spacingRight: 0,
@@ -36,7 +39,7 @@
 					align: 'center',
 					style: {
 						color: 'black',
-						fontSize: '20px',
+						fontSize: '12px',
 						fontWeight: 'bold'
 					}
 				},
@@ -47,6 +50,8 @@
 				},
 				plotOptions: {
 					pie: {
+						animation: false,
+						enableMouseTracking: false,	
 						allowPointSelect: true,
 						borderWidth: 2,		
 						innerSize: '40%',						
@@ -73,4 +78,7 @@
 			});
 		</script>
 	</body>
+	<footer><font size='1'><em>Sources: China Water Risk, NBSC Website</em>
+	</font>
+	</footer>		
 </html>

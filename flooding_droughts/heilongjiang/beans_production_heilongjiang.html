@@ -9,10 +9,12 @@
 
 			#container {
 				min-width: 300px;
-				height: 400px;
+				height: 300px;
 				margin: 0 auto;
 			}
-			
+			footer {
+				font-family:Arial;
+			}			
 		</style>
 	</head>
 	<body>
@@ -22,11 +24,11 @@
 			Highcharts.chart('container', {
 				credits: {
 					enabled: false
-				},				
-				colors: ['#DCE6F2', '#FFDDDD', '#6B8033', '#DAB83C'],			
+				},							
 				chart: {
 					style: {
-						fontFamily: 'Arial'
+						fontFamily: 'Arial',
+						fontSize: '10px'
 					},
 					alignTicks: false,
 					spacingTop: 0,
@@ -39,19 +41,17 @@
 					align: 'left',
 					style: {
 						color: 'black',
-						fontSize: '20px',
+						fontSize: '12px',
 						fontWeight: 'bold'
 					}
 				},
 				xAxis: {
 					className: 'x-axis',
-					
-					tickInterval: 2,					
+					tickInterval: 1,					
 					labels: {
 						style: {
 							color: 'black',
-							fontSize:'12px'
-						//	rotation: -90,
+							fontSize:'10px'
 						}
 					},
 					lineColor: 'black',
@@ -68,7 +68,7 @@
 					labels: {						
 						style: {
 							color: 'black',
-							fontSize:'12px'
+							fontSize:'10px'
 						}
 					},
 					title: {
@@ -85,7 +85,7 @@
 					labels: {						
 						style: {
 							color: 'black',
-							fontSize:'12px'
+							fontSize:'10px'
 						},
 						formatter: function() {
 						   return this.value + '%';
@@ -98,7 +98,8 @@
 				legend : {
 					itemStyle: {
 						color: 'black',
-						fontSize: '15px',
+						'cursor': 'default',
+						fontSize: '10px',
 						fontWeight: null
 					}
 				},
@@ -109,6 +110,8 @@
 				},		
 				plotOptions: {
 					column: {
+				        animation: false,
+						enableMouseTracking: false,	
 						stacking: 'normal',
 						pointPadding: 0,
 						borderWidth: 0,						
@@ -119,9 +122,16 @@
 							headerFormat: '<b>{point.x}</b><br/>',
 							pointFormat: '{series.name}',
 							borderColor: 'black'
+						},
+						events: {
+							legendItemClick: function () {
+								return false; 
+							}
 						}						
 					},
 					line: {
+				        animation: false,
+						enableMouseTracking: false,	
 						marker: {
 							enabled: false,
 							symbol: 'circle',
@@ -132,6 +142,11 @@
 								}
 							}
 						},
+						events: {
+							legendItemClick: function () {
+								return false; 
+							}
+						}						
 					},
 					series: {
 						groupPadding: 0,
@@ -151,13 +166,13 @@
 									format: 'First in<br>2013',
 									color: '#094677',
 									style: {
-										color: '#094677',
 										fontSize: '7px',
 										textOutline: false ,
 										fontWeight: 'bold'
 									},
 									y: -180
-								}}, 0, 0]
+								}}, 0, 0],
+					color: '#DCE6F2'
 				}, {				
 					name: 'Severe Crop Failure due to Droughts',
 					type: 'column',
@@ -168,24 +183,29 @@
 									format: 'Second<br>in 2007',
 									color: '#9F171E',
 									style: {
-										color: '#9F171E',
 										fontSize: '7px',
 										textOutline: false ,
 										fontWeight: 'bold'
 									},
 									y: -180
-								}}, 0, 0, 0, 0, 0, 0, 0, 0]
+								}}, 0, 0, 0, 0, 0, 0, 0, 0],
+					color: '#FFDDDD'
 				}, {
 					name: 'Beans Production',
 					type: 'line',			
-					data: [689.26,	442.67,	667,	618.49,	601.85,	577.78,	479.6,	400.17,	469.59,	437.33]
+					data: [689.26,	442.67,	667,	618.49,	601.85,	577.78,	479.6,	400.17,	469.59,	437.33],
+					color: '#6B8033'
 				}, {
 					name: 'Beans Production (% of China, RHS)',
 					type: 'line',
 					yAxis: 1,					
-					data: [34.4,	25.7,	32.6,	32,	31.7,	30.3,	27.7,	25.1,	28.9,	27.5]				
+					data: [34.4,	25.7,	32.6,	32,	31.7,	30.3,	27.7,	25.1,	28.9,	27.5],
+					color: '#DAB83C'
 				}]
 			});
 		</script>
 	</body>
+	<footer><font size='1'><em>Sources: China Water Risk, NBSC Website</em>
+	</font>
+	</footer>	
 </html>
