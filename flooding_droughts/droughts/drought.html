@@ -215,7 +215,7 @@
 	
 		var color = d3.scaleLinear()
 						.domain([minValue, maxValue])
-						.range(["#F3F2B4", "#C02727"])
+						.range(["#DAB83C", "#9F171E"])
 						.interpolate(d3.interpolateHcl);
 		
 		var tooltip = d3.select('#tooltip')
@@ -261,7 +261,7 @@
 				.style("text-anchor", "end")
 				.text("Rate");			
 						
-		d3.json('simplified_smoothed_provinces.json', function(error, provinces){
+		d3.json('https://raw.githubusercontent.com/mtcl1/mtcl1.github.io/master/flooding_droughts/droughts/simplified_smoothed_provinces.json', function(error, provinces){
 			d3.csv('drought_crop_failure.csv', function(error, data){
 				
 				var value = {};
