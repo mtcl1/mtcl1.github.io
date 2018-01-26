@@ -15,6 +15,7 @@
 			
 			footer {
 				font-family:Arial;
+				color:white:
 			}			
 			
 		</style>
@@ -76,6 +77,10 @@
 					max: 180000,
 					title: {
 						text: 'Unit: 1,000 hectares'
+						style: {
+							color: 'white',
+							fontSize:'10px'							
+						}
 					}
 				}, {
 					className: 'y-axis-1',
@@ -86,8 +91,8 @@
 						},
 						formatter: function() {
 						   return this.value*100 + '%';
-						}						
-					},
+						}					
+				},
 					opposite: true,
 					gridLineColor: null,
 					tickInterval: 0.2,
