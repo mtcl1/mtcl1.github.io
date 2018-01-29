@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/annotations.js"></script>
+		<title>Irrigation Water Use and Efficiency in China</title>
+		<style type="text/css">
+
+			#container {
+			//	min-width: 300px;
+			//	height: 300px;
+				margin: 0 auto;
+			}
+			
+			footer {
+				font-family:Arial;
+				color:white;
+			}			
+			
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+	
+		<script type="text/javascript">
+
+			Highcharts.chart('container', {
+				credits: {
+					enabled: false
+				},						
+				chart: {
+					style: {
+						fontFamily: 'Arial',
+						fontSize: '10px'
+					},
+					alignTicks: false,
+					spacingTop: 0,
+					spacingRight: 0,
+					spacingBottom: 0,
+					spacingLeft: 0,
+					backgroundColor: null
+				},
+				title: {
+					text: "Irrigation Water Use and Efficiency in China",
+					align: 'left',
+					style: {
+						color: 'white',
+						fontSize: '12px',
+						fontWeight: 'bold'
+					}
+				},
+				xAxis: {
+					className: 'x-axis',
+					tickInterval: 5,					
+					labels: {
+						style: {
+							color: 'white',
+							fontSize:'10px',
+						}
+					},
+					lineColor: 'white',
+					tickLength: 0,					
+				},
+				yAxis: [{
+					className: 'y-axis-0',
+					labels: {					
+						style: {
+							color: 'white',
+							fontSize:'10px'
+						}
+					},
+					gridLineWidth: 0,					
+					gridLineColor: '#D3D3D3',
+					tickInterval: 1000000,
+					min: 0,
+					max: 8000000,
+					title: {
+						text: 'Unit: 1,000 hectares',
+						style: {
+							color: 'white',
+							fontSize:'10px'							
+						}
+					}
+				}, {
+					className: 'y-axis-1',
+					labels: {					
+						style: {
+							color: 'white',
+							fontSize:'10px'
+						},
+						formatter: function() {
+						   return this.value*100 + '%';
+						}					
+				},
+					opposite: true,
+					gridLineColor: null,
+					tickInterval: 0.2,
+					min: 0,
+					max: 0.6,
+					visible: true,
+					title: {
+						text: ''
+					}					
+				}],
+				legend : {
+					enabled: false,
+					itemStyle: {
+						color: 'white',
+					//	'cursor': 'default',						
+						fontSize: '10px',
+						fontWeight: null
+					}
+				},
+				tooltip: {
+					headerFormat: '<b>{series.name}</b><br/>',
+					pointFormat: '{point.x}: {point.y:.2f}',
+					borderColor: 'black',
+					hideDelay: 0
+				},		
+				plotOptions: {
+					line: {			
+					//	animation: false,
+					//	enableMouseTracking: false,	
+						marker: {
+							enabled: false,
+							symbol: 'circle',
+							radius: 2,
+							states: {
+								hover: {
+									enabled: true
+								}
+							}							
+						}
+					//	events: {
+					//		legendItemClick: function () {
+					//			return false; 
+					//		}
+					//	}						
+					},
+					series: {
+						stickyTracking: false,						
+						label: {
+							connectorAllowed: false
+						},
+						pointStart: 1997,
+						pointPadding: -0.1			
+					}					
+				},
+				series: [{				
+					name: 'Irrigated Water Use per 1,000 hectares',
+					type: 'line',
+					data: [7380000,	7320000,	7260000,	7185000,	7185000,	6975000,	6450000,	6750000,	6720000,	6735000,	6510000,	6525000,	6465000,	6315000,	6225000,	6060000,	6270000,	6030000,	5910000,
+					{x: 2016, 
+					 y: 5700000, 								
+					 dataLabels: {
+									enabled: true,
+									format: 'Irrigated Water Use per 1,000 hectares',
+									color: 'white',
+									style: {
+										color: 'white',
+										fontSize: '10px',
+										textOutline: false ,
+										fontWeight: null
+									}
+								}
+					}],
+					color: 'white'
+					}, {				
+					name: 'Irrigation Efficiency Coefficient',
+					type: 'line',
+					yAxis: 1,
+					data: [NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	NaN,	0.5,	0.51,	0.516,	0.523,	0.53,	0.536,
+					{x: 2016,
+					 y:	0.542, 								
+					 dataLabels: {
+									enabled: true,
+									format: 'Irrigation Efficiency Coefficient',
+									color: 'white',
+									style: {
+										color: 'white',
+										fontSize: '10px',
+										textOutline: false ,
+										fontWeight: null
+									}
+								}
+					}],
+					color: 'white'
+					}]
+			});
+		</script>
+	</body>
+	<footer><font size='1'><em>Sources: China Water Risk, China Water Resources Bulletin</em>
+	</font>
+	</footer>	
+</html>
