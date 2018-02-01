@@ -6,152 +6,15 @@
 	<script type = 'text/javascript' src='https://d3js.org/d3.v4.min.js'></script>
 	<style type = 'text/css'>
 	
-		#tooltip{
-			position:absolute;
-			text-align:left;
-			width:200px;
-			padding:10px;
-			font-size:10px;
-			font-family:Arial;
-			background:#ffffff;
-			pointer-events:none;
-		//	opacity:0;
-		//	border:1px solid #ccc;
-		}
-				
-		#tooltip h3{
-			font-size:12px;
-			margin:0 0 4px 0;
-			line-height:1.2em;
-		}
-
-		#tooltip .value{
-			padding-bottom:6px;
-			margin-bottom:10px;
-			font-size:11px;
-			font-style:italic;
-			border-bottom:1px solid #000;
-		}
-		
-		.x-axis text{
-			font-family:Arial;
-			font-size:10px;
-		}	
-		
-		.x-axis path{
-			stroke: white;
-		}
-		
-		.y-axis text{
-			font-family:Arial;
-			font-size:10px;
-		}	
-		
-		.y-axis path{
-			stroke: white;
-		}		
-		
-		#main-wrapper{
+		#main{
 		//	width:960px;
 			margin:0 auto;
-		}
-		
-		#navheader{
-			margin-bottom:10px;
-		}
-		
-		#navheader p{
-			font-family:Arial;
-			float:left;
-			margin-left:10px;
-			margin-top:0px;
 		}
 		
 		footer {
 			font-family:Arial;
 		}
-	
-		#timebrackets div{
-			float:left;
-			width:75px;
-			height:24px;
-			text-align:center;
-			background:#eee;
-			font-size:15px;
-			line-height:1.2em;
-			padding:5px;
-			font-family:Arial;
-			border:1px solid #fff;
-			cursor:pointer;
-		}
-		
-		#timebrackets div.current{
-			background:#aaa;
-			color:#fff;
-		//	border:1px solid #000;
-		}
-		
-		#replay {
-			float:left;
-			font-family:Arial;
-			font-size:0.8em;
-			text-transform:uppercase;
-			cursor:pointer;
-			margin:0px 0 0 0px;
-			padding:7px 7px 5px 7px;
-			font-weight:bold;
-			border:1px solid #ccc;
-		//	display:none;
-			color:#666;
-		}
-		
-		#replay:hover {
-			border:1px solid #000;
-			color:#000;
-		}
-		
-		.clr {
-			clear:both;
-		}
-		
-		.legend .legend-header{
-			font-family:Arial;
-			font-weight:bold;
-			font-size:12px;
-		}
 
-		.legend .legend-label{
-			font-size:11px;
-			font-family:Arial;
-		}
-		
-		.legend2 .legend2-header{
-			font-family:Arial;
-			font-weight:bold;
-			font-size:12px;
-		}
-		
-		.legend2 .legend2-bubble {
-		  fill: none;
-		  stroke: #233B6E;
-		}
-		
-		.legend2 .legend2-label {
-			font-size:11px;
-			font-family:Arial;
-		}	
-		
-		.legend3 .legend3-header{
-			font-family:Arial;
-			font-weight:bold;
-			font-size:12px;
-		}		
-		
-		.legend3 .legend3-label{
-			font-size:11px;
-			font-family:Arial;
-		}				
-		
 		#bubble {
 		  fill-opacity: 0.8;
 		  stroke-opacity: 1;
@@ -243,7 +106,7 @@
 				});
 				
 				dataDry.forEach(function(d){
-					valueDry[d.Province] = +d[fields[currFieldIndex]];
+					valueDry[d.Province] = +d['2016'];
 				});				
 				
 				svg.selectAll('#province')
