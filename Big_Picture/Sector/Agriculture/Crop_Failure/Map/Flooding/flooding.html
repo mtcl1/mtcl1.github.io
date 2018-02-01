@@ -2,67 +2,21 @@
 <html lang='en'>
 <head>
 	<meta charset = 'utf-8'>
-	<title>Crop Failure - Flooding</title>
-	<script type = 'text/javascript' src='https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js'></script> 
+	
 	<script type = 'text/javascript' src='https://d3js.org/d3.v4.min.js'></script>
-	<script type = 'text/javascript' src='https://d3js.org/topojson.v1.min.js'></script>
 	<style type = 'text/css'>
 	
-		#tooltip{
-			position:absolute;
-			text-align:left;
-			width:200px;
-			padding:10px;
-			font-size:10px;
-			font-family:Helvetica,sans-serif;
-			background:#ffffff;
-			pointer-events:none;
-		//	opacity:0;
-		//	border:1px solid #ccc;
-		}
-				
-		#tooltip h3{
-			font-size:12px;
-			margin:0 0 4px 0;
-			line-height:1.2em;
-		}
-
-		#tooltip .value{
-			padding-bottom:6px;
-			margin-bottom:10px;
-			font-size:11px;
-			font-style:italic;
-			border-bottom:1px solid #000;
-		}
-		
-		.x-axis text{
-			font-family:Helvetica,sans-serif;
-			font-size:10px;
-		}	
-		
-		.x-axis path{
-			stroke: white;
-		}
-		
-		.y-axis text{
-			font-family:Helvetica,sans-serif;
-			font-size:10px;
-		}	
-		
-		.y-axis path{
-			stroke: white;
-		}		
-		
-		#main-wrapper{
+		#main{
 		//	width:960px;
+			max-width: 960px;			
 			margin:0 auto;
 		}
 		
-		#navheader{
+		#header{
 			margin-bottom:10px;
 		}
 		
-		#navheader p{
+		#header p{
 			font-family:Arial;
 			float:left;
 			margin-left:10px;
@@ -71,60 +25,17 @@
 		
 		footer {
 			font-family:Arial;
-		}		
+		}
 	
-		#timebrackets div{
-			float:left;
-			width:75px;
-			height:24px;
-			text-align:center;
-			background:#eee;
-			font-size:15px;
-			line-height:1.2em;
-			padding:5px;
-			font-family:Helvetica,sans-serif;
-			border:1px solid #fff;
-			cursor:pointer;
-		}
-		
-		#timebrackets div.current{
-			background:#aaa;
-			color:#fff;
-		//	border:1px solid #000;
-		}
-		
-		#replay {
-			float:left;
-			font-family:Helvetica,sans-serif;
-			font-size:0.8em;
-			text-transform:uppercase;
-			cursor:pointer;
-			margin:0px 0 0 0px;
-			padding:7px 7px 5px 7px;
-			font-weight:bold;
-			border:1px solid #ccc;
-		//	display:none;
-			color:#666;
-		}
-		
-		#replay:hover {
-			border:1px solid #000;
-			color:#000;
-		}
-		
-		.clr {
-			clear:both;
-		}
 		
 		.legend .legend-header{
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 			font-weight:bold;
 			font-size:12px;
 		}
-
 		.legend .tick-label{
 			font-size:11px;
-			font-family:Helvetica,sans-serif;
+			font-family:Arial;
 		}
 		
 		.svg-container {
@@ -144,56 +55,39 @@
 	</style>
 </head>
 <body>
-	<div id = 'main-wrapper'>
+	<div id = 'main'>
 	
-	<div id = 'navheader'>
-	<!--
-	<div id = 'replay' class = 'initial'>Play &nbsp;<img src='play.png'></div>
+	<div id = 'header'>
 	
-	<p style = 'font-size: 12px'><b>Culumative Crop Failure Due To Flooding, Waterlogging, Landslides and Debris flow</b><br><font size='1'>From 2007 to 2016</font></p>
-	//-->
-	<div class = 'clr'></div>
+	<!--title-->
+	<p style = 'font-size: 12px'><b>Cumulative Crop Failures In China Due To Floods</b><br>
+	
+	<!--sub-title-->
+	<font size = '1'>From 2007 to 2016</font></p>
+	
 	</div>
-	
-	<!--
-	<div id = 'timebrackets'></div>
-	//-->
+
 	<div id = 'map' class="svg-container"></div>
-	
-	<div id="tooltip">
-	<h3 class="name"></h3>
-	<div class="value"></div>
-	<div class="year-chart"></div>
-	</div>
+		
+	<!--footer-->
+	<footer>
+	<font size='1'><em>Sources: China Water Risk, China Environment Statistical Yearbook, China Statistical Yearbook<br>Note: Taiwan Province, HKSAR, MSAR and South China Sea are not shown because of no data</em>
+	</footer>		
 
-	
 	</div>
-
+	
+	
 
 	<script type = 'text/javascript'>
 		var ValueByProvince = d3.map();
-		
-		var fields = ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'];
-		var currFieldIndex = 0;
 	
-		d3.select('#timebrackets')
-			.selectAll('div')
-			.data(fields)
-			.enter()
-			.append('div')
-			.attr('class', function(d, i){return i == currFieldIndex ? 'timebutton current' : 'timebutton'})
-			.attr('id', function(d, i) {return 'index' + i })
-			.html(function(d){return d;});
-
 		var formatTotal = d3.format(',.0f');
-	
+		
+		//the size of the graph
 		var width = 960,
 			height = 700;
-			
-		var chartMargin = { top: 21, right: 15, bottom: 20, left: 30 },
-			chartWidth = 200 - chartMargin.left - chartMargin.right,
-			chartHeight = 100 - chartMargin.top - chartMargin.bottom;
 		
+		//projection
 		var projection = d3.geoAlbers()
 							.scale(1000)
 							.rotate([-105, 0])
@@ -207,73 +101,30 @@
 			  .attr("preserveAspectRatio", "xMinYMin meet")
 			  .attr("viewBox", "0 0 960 700")
 			  .classed("svg-content", true);
-					
+		
+		//specify values for legend
 		var maxValue = 1400;
 		var minValue = 1;
 	
-	//	var color = d3.scaleQuantize()
-	//					.domain([minValue, maxValue])
-	//					.range(["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"]);
-	
+		//specify color for legend
 		var color = d3.scaleLinear()
 						.domain([minValue, maxValue])
 						.range(["#0D77B9", "#091825"])
 						.interpolate(d3.interpolateHcl);
-		
-		var tooltip = d3.select('#tooltip')
-						.style('opacity', 0);
-		
-		var xScale = d3.scaleBand()
-						.domain(fields)
-						.rangeRound([0, chartWidth]);
-					//	.padding(0.1);
-		
-		var yScale = d3.scaleLinear()
-					   .domain([0, 500])
-					   .range([chartHeight, 0]);
-	   
-		var xAxis = d3.axisBottom(xScale)
-						.tickValues(['2007', '2011', '2016'])
-						.tickSize(5);
-		
-		var yAxis = d3.axisLeft(yScale)
-						.tickValues([0, 500])
-						.tickFormat(formatTotal)
-						.tickSize(5);
-						
-		var yearChart = tooltip.select(".year-chart")
-								.append("svg")
-								.attr("width", chartWidth + chartMargin.left + chartMargin.right)
-								.attr("height", chartHeight + chartMargin.top + chartMargin.bottom)
-								.append("g")
-								.attr("transform", "translate(" + chartMargin.left + ", " + chartMargin.top + ")");
-								
-		yearChart.append("g")
-				.attr("class", "x-axis")
-				.attr("transform", "translate(0," + chartHeight + ")")
-				.call(xAxis);
-						
-		yearChart.append("g")
-				.attr("class", "y-axis")
-				.call(yAxis)
-				.append("text")
-				.attr("x", 0)
-				.attr("y", 0)
-				.attr("dy", "0")
-				.style("text-anchor", "end")
-				.text("Rate");			
-						
-		d3.json('https://raw.githubusercontent.com/mtcl1/mtcl1.github.io/master/flooding_droughts/flooding/simplified_smoothed_provinces.json', function(error, provinces){
-			d3.csv('flooding_crop_failure.csv', function(error, data){
+		//link of json (border of the map), can be a relative link
+		d3.json('simplified_smoothed_provinces.json', function(error, provinces){
+			//link of csv (data of the map), can be a relative link
+			d3.csv('floods_crop_failure.csv', function(error, data){
 				
 				var value = {};
 				
+				//load data
 				data.forEach(function(d){
-					//value[d.Province] = +d[fields[currFieldIndex]];
 					value[d.Province] = +d.Cumulative;
 					ValueByProvince.set(d.Province, d);
 				});
 				
+				//draw map
 				svg.selectAll('path')
 					.data(provinces.features)
 					.enter()
@@ -289,183 +140,24 @@
 										})
 					.style('stroke', 'white')
 					.style('stroke-width', 0.5);
-				
-				svg.selectAll('#province')
-					.on('mouseover', function(d){
-							d3.select(this)
-								.style('fill', '#eee');
-							tooltip.transition()
-									.duration(100)
-									.style('opacity', 0.8);
-						   if (d3.event.pageX > (600 - 320)) {
-							   tooltip.style("left", (d3.event.pageX - 250) + "px");
-						   } else {
-							   tooltip.style("left", (d3.event.pageX + 30) + "px")
-								   .style("top", (d3.event.pageY -30) + "px");
-						   }
-						   
-						   if (d3.event.pageY > (500 - 150)) {
-								tooltip.style("top", (d3.event.pageY -150) + "px");
-						   } else {
-								tooltip.style("top", (d3.event.pageY -30) + "px");
-						   }
-						   provinceSelected = d.properties.NAME_1;
-						   updateTooltip();
-					})
-					.on('mouseout', function(d){
-							d3.select(this)
-								.style('fill', function(d){
-										if(value[d.properties.NAME_1]){
-												return color(value[d.properties.NAME_1]);
-											}else{
-												return '#eee';
-											}
-										});
-							tooltip.transition()
-									.duration(100)
-									.style('opacity', 0);
-					});
-									
-				
-				function updateTooltip(){
-					
-					tooltip.select(".name").text(provinceSelected);
-					//tooltip.select(".value").text('Crop Failure (1,000 hectares): ' + formatTotal(ValueByProvince.get(provinceSelected)[fields[currFieldIndex]]));					
-					tooltip.select(".value").text('10 Years Cumulative Crop Failure: ' + formatTotal(ValueByProvince.get(provinceSelected)['Cumulative']));
-					
-					data.forEach(function(d){
-						//value[d.Province] = +d[fields[currFieldIndex]];
-						value[d.Province] = +d['Cumulative'];
-						ValueByProvince.set(d.Province, d);
-					});					
-					
-					var timeSeries = [];
-					var temp = ValueByProvince.get(provinceSelected);
-					
-					fields.forEach(function(e, i, a){
-						timeSeries.push({ 'year': e, 'value': temp[e] });
-					});					
-					
-					
-					var barsUpdate = yearChart.selectAll(".bar")
-												.data(timeSeries);
-												
-						
-					barsUpdate.enter()
-								.append("rect")
-								.attr("class", "bar")
-								.attr("x", function(d) { return xScale(d.year); })
-								.attr("y", function(d) { return yScale(d.value); })							
-								.attr("width", xScale.bandwidth())
-								.attr("height", function(d) {
-								return chartHeight - yScale(d.value) })								
-								.attr("fill", function(d) { 
-									if(d){
-										return color(d.value); 
-									}else{
-										return '#eee';
-									}
-									})
-								.style('stroke', 'white')
-								.style('stroke-width', 1);
-								
-					barsUpdate.transition()
-								.duration(500)
-								.attr("y", function(d) { return yScale(d.value); })
-								.attr("height", function(d) { return chartHeight - yScale(d.value) })
-								.attr("fill", function(d) {
-									if(d){
-										return color(d.value); 
-									}else{
-										return '#eee';
-									}
-								});								
-							
-				}
-				
-				
-				
-				
-				d3.select('#timebrackets')
-					.selectAll('div')
-					.on('click', function(d, i){
-									currFieldIndex = i;
-									d3.select('.current').classed("current", false);
-									d3.select(this).classed('current', true);
-									updateFill(currFieldIndex);
-								});
-				
-				
-				
-				function updateFill(currFieldIndex){
-					
-					//indicator = document.getElementById('dropdown').value
-					data.forEach(function(d){
-						value[d.Province] = +d[fields[currFieldIndex]];
-						ValueByProvince.set(d.Province, d);
-					});
-					
-					svg.selectAll('path')
-						.style('fill', function(d){
-							if(value[d.properties.NAME_1]){
-									return color(value[d.properties.NAME_1]);
-								}else{
-									return '#eee';
-								}
-					});
-				}
-				
-				d3.select("#replay").on('click', replay);
-				
-				function replay() {
-					if (d3.select("#replay").classed("pause")) {
-						clearInterval(interval);
-						d3.select("#replay").attr("class", "play").html('Resume &nbsp;<img src="play.png" />');
-					}
-					else {
-					  if (currFieldIndex >= fields.length - 1) {
-						currFieldIndex = 0;
-						d3.select("#timebrackets .current").classed("current", false);
-						d3.select("#index" + currFieldIndex).classed("current", true);   
-					  }
-					  updateFill(currFieldIndex);
-					  d3.select("#replay").attr("class", "pause").html('Pause &nbsp;<img src="pause.png" />');
-					  interval = setInterval(loop, 1000);
-					}
-				}				
-	
-				function loop() {
-					if (currFieldIndex >= fields.length -1) {
-						clearInterval(interval);
-						currFieldIndex = fields.length - 1;
-						d3.select("#replay").attr("class", "play").html('Replay &nbsp;<img src="play.png" />');
-					} else {
-						currFieldIndex += 1;
-						d3.select("#timebrackets .current").classed("current", false);
-						d3.select("#index" + currFieldIndex).classed("current", true);
-						updateFill(currFieldIndex);
-					}
-				}
-				
+				//legend
 				var legend = svg.append("g")
 								.attr("class", "legend");
-
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
 						.attr("y", height - 240)
-						.text("Cumulative");						
+						.text("Cumulative");					
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
 						.attr("y", height - 225)
-						.text("Crop Failure");
+						.text("Crop Failures");
 				legend.append("text")
 						.attr("class", "legend-header")
 						.attr("x", width - 80)
 						.attr("y", height - 210)
 						.text("(1,000 ha)");
-
 				legend.selectAll(".legend-square")
 						.data([minValue, (maxValue - minValue) / 4, (maxValue - minValue) / 3, (maxValue - minValue) / 2, maxValue])
 						.enter()
@@ -484,23 +176,10 @@
 						.attr("x", width - 60)
 						.attr("y", function(d, i) { return height - i * (15 * 4) - 145 + 15; })
 						.text(function(d) { return formatTotal(d); });
-					
-				
-				console.log(value);
-				console.log(ValueByProvince.get('Beijing'));
-
+						
 			});
 		});
 		
-
-		
-
-		
-		
 	</script>
 </body>
-	<!--
-	<footer><font size='1'><em>Sources: China Water Risk, China Environment Statistical Yearbook, China Statistical Yearbook<br>Note: Taiwan Province, HKSAR, MSAR and South China Sea are not shown because of no data<br>The interactive version of the map will be available in CWR's new website</em>
-	</footer>
-	//-->
 </html>
