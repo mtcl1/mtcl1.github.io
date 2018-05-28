@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+		<title>Bar Chart</title>
+		<style>
+			body, footer {
+				font-family: Arial;
+				font-size: 12px;
+				color: black;
+				font-weight: normal;
+			}
+			
+			#container {
+				width: 100%;
+				height: 500px;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+	
+		<script>
+			Highcharts.chart('container', {
+				credits: {
+					enabled: false
+				},					
+				chart: {
+					style: {
+						fontFamily: 'Arial',
+						fontSize: '12px'
+					},					
+					spacingTop: 0,
+					spacingRight: 0,
+					spacingBottom: 0,
+					spacingLeft: 0,
+					backgroundColor: 'transparent'
+				},
+				title: {
+					text: 'Textile Raw Materials in China (% of The World)',
+					align: 'left',
+					style: {
+						color: 'black',
+						fontSize: '15px',
+						fontWeight: 'bold'
+					}
+				},
+				xAxis: {
+					type: 'category',					
+					labels: {
+						style: {
+							fontSize: '12px'
+						}
+					},
+					lineColor: 'transparent',
+					tickLength: 0					
+				},
+				yAxis: {
+					visible: false
+				},				
+				tooltip: {
+					//headerFormat: '<b>{series.name}</b><br/>',
+					//pointFormat: '{point.y:.2f}',
+					formatter: function() {
+						return '<b>' + this.point.name + ': ' + Math.round(this.y * 100) + '% of the world</b>';
+					},
+					borderColor: 'black',
+					hideDelay: 0
+				},
+				legend: {
+					enabled: false
+				},
+				plotOptions: {
+					column: {
+					//	animation: false,
+						fillOpacity: 1,
+					//	enableMouseTracking: false,
+						stickyTracking: false,
+						pointPadding: 0,
+						groupPadding: 0.1
+					}				
+				},				
+				series: [{
+					type: 'column',
+					name: 'Textile Raw Materials in China',
+					data: [{
+						name: 'Raw Silk (#1)',
+						y: 0.7485,
+						drilldown: 'raw-silk'
+					}, {
+						name: 'Chemical Fibre (#1)',
+						y: 0.6542,
+						drilldown: 'chemical-fibre'
+					}, {
+						name: 'Soda Ash (#1)',
+						y: 0.4851,
+						drilldown: 'soda-ash'
+					}, {
+						name: 'Cotton (#2)',
+						y: 0.2717,
+						drilldown: 'cotton'
+					}, {
+						name: 'Greasy Wool (#1)',
+						y: 0.2165,
+						drilldown: 'greasy-wool'
+					}],
+					color: '#DAB83C',
+					dataLabels: {
+						enabled: true,
+						color: 'black',
+						padding: 5,
+						formatter: function(){
+							return Math.round(this.y * 100) + '%';
+						},
+						style: {
+							fontSize: '12px',
+						}
+					}
+				}],
+				drilldown: {
+					activeAxisLabelStyle: {
+							color: 'black',
+							fontWeight: 'normal',
+							textDecoration: 'none'
+					},
+					activeDataLabelStyle: {
+							color: 'black',
+							fontWeight: 'normal',
+							textDecoration: 'none'
+					},				
+					series: [{
+						type: 'column',
+						name: 'Raw Silk',
+						id: 'raw-silk',
+						data: [	
+							['China',0.748522274],
+							['India',0.140667605],
+							['Viet Nam',0.040164436],
+							['Turkmenistan',0.026732726],
+							['Romania',0.012475272]
+						]
+					}, {
+						type: 'column',
+						name: 'Chemical Fibre',
+						id: 'chemical-fibre',
+						data: [	
+							['China',0.65420631],
+							['India',0.068644692],
+							['United States',0.038252845],
+							['Taiwan Province',0.033157475],
+							['West Europe',0.029595226]
+						]
+					}, {
+						type: 'column',
+						name: 'Soda Ash',
+						id: 'soda-ash',		
+						data: [
+							['China',0.485074627],
+							['United States',0.220149254],
+							['Russia',0.052238806],
+							['Germany',0.048507463],
+							['India',0.044776119]
+						]
+					}, {
+						type: 'column',
+						name: 'Cotton',
+						id: 'cotton',
+						data: [	
+							['India',0.272784439],
+							['China',0.271652553],
+							['United States',0.132807915],
+							['Pakistan',0.096629496],
+							['Brazil',0.063637126],
+						]
+					}, {
+						type: 'column',
+						name: 'Greasy Wool',
+						id: 'greasy-wool',
+						data: [		
+							['China',0.216513366],
+							['Australia',0.165687914],
+							['New Zealand',0.07583076],
+							['United Kingdom',0.031251465],
+							['Iran (Islamic Republic of)',0.028264193]
+						]
+					}
+				]}
+			});
+		</script>
+	</body>
+	
+	<footer><em>Sources: China Water Risk, FAO, China Textile Industry Development Report, USGS<br>
+	Note: Chemical Fibre figures include Olefin Fibres; Soda ash figures are estimated and preliminary; Cotton figures are esimated</em>
+	</footer>
+	
+</html>
