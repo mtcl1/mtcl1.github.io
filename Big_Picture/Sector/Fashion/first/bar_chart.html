@@ -53,7 +53,8 @@
 					labels: {
 						style: {
 							fontSize: '15px',
-							color: '#094677'
+							color: '#094677',
+							fontWeight: 'bold'
 						}
 					},
 					lineColor: 'transparent',
@@ -67,6 +68,10 @@
 					//pointFormat: '{point.y:.2f}',
 					formatter: function() {
 						return '<b>' + this.point.name + ': ' + Math.round(this.y * 100) + '% of the world</b>';
+					},
+					style: {
+						color: '#094677',
+						fontSize: '15px'
 					},
 					borderColor: '#094677',
 					hideDelay: 0
@@ -91,7 +96,7 @@
 							},
 							style: {
 								fontSize: '15px',
-								fontWeight: 'normal'
+								fontWeight: 'bold'
 							}
 						}						
 					}				
@@ -124,11 +129,11 @@
 				}],
 				drilldown: {
 					activeAxisLabelStyle: {
-							fontWeight: 'normal',
+					//		fontWeight: 'normal',
 							textDecoration: 'none'
 					},
 					activeDataLabelStyle: {
-							fontWeight: 'normal',
+					//		fontWeight: 'normal',
 							textDecoration: 'none'
 					},				
 					series: [{
