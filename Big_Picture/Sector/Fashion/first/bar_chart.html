@@ -80,7 +80,19 @@
 					//	enableMouseTracking: false,
 						stickyTracking: false,
 						pointPadding: 0,
-						groupPadding: 0.1
+						groupPadding: 0.1,
+						dataLabels: {
+							enabled: true,
+							color: 'black',
+							padding: 5,
+							formatter: function(){
+								return Math.round(this.y * 100) + '%';
+							},
+							style: {
+								fontSize: '12px',
+								fontWeight: 'normal'
+							}
+						}						
 					}				
 				},				
 				series: [{
@@ -107,18 +119,7 @@
 						y: 0.2165,
 						drilldown: 'greasy-wool'
 					}],
-					color: '#DAB83C',
-					dataLabels: {
-						enabled: true,
-						color: 'black',
-						padding: 5,
-						formatter: function(){
-							return Math.round(this.y * 100) + '%';
-						},
-						style: {
-							fontSize: '12px',
-						}
-					}
+					color: '#094677'
 				}],
 				drilldown: {
 					activeAxisLabelStyle: {
@@ -136,56 +137,61 @@
 						name: 'Raw Silk',
 						id: 'raw-silk',
 						data: [	
-							['China',0.748522274],
-							['India',0.140667605],
-							['Viet Nam',0.040164436],
-							['Turkmenistan',0.026732726],
-							['Romania',0.012475272]
-						]
+							{name: 'China<br>(#1)', y: 0.748522274, color: '#094677'},
+							['India<br>(#2)',0.140667605],
+							['Viet Nam<br>(#3)',0.040164436],
+							['Turkmenistan<br>(#4)',0.026732726],
+							['Romania<br>(#5)',0.012475272]
+						],
+						color: '#7C8388'						
 					}, {
 						type: 'column',
 						name: 'Chemical Fibre',
 						id: 'chemical-fibre',
 						data: [	
-							['China',0.65420631],
-							['India',0.068644692],
-							['United States',0.038252845],
-							['Taiwan Province',0.033157475],
-							['West Europe',0.029595226]
-						]
+							{name: 'China<br>(#1)', y: 0.65420631, color: '#094677'},
+							['India<br>(#2)',0.068644692],
+							['United States<br>(#3)',0.038252845],
+							['Taiwan Province<br>(#4)',0.033157475],
+							['West Europe<br>(#5)',0.029595226]
+						],
+						color: '#7C8388'
 					}, {
 						type: 'column',
 						name: 'Soda Ash',
 						id: 'soda-ash',		
 						data: [
-							['China',0.485074627],
-							['United States',0.220149254],
-							['Russia',0.052238806],
-							['Germany',0.048507463],
-							['India',0.044776119]
-						]
+							{name: 'China<br>(#1)', y: 0.485074627, color: '#094677'},
+							['United States<br>(#2)',0.220149254],
+							['Russia<br>(#3)',0.052238806],
+							['Germany<br>(#4)',0.048507463],
+							['India<br>(#5)',0.044776119]
+						],
+						color: '#7C8388'
 					}, {
 						type: 'column',
 						name: 'Cotton',
 						id: 'cotton',
 						data: [	
-							['India',0.272784439],
-							['China',0.271652553],
-							['United States',0.132807915],
-							['Pakistan',0.096629496],
-							['Brazil',0.063637126],
-						]
+							['India<br>(#1)',0.272784439],
+							{name: 'China<br>(#2)', y: 0.271652553, color: '#094677'},
+							['United States<br>(#3)',0.132807915],
+							['Pakistan<br>(#4)',0.096629496],
+							['Brazil<br>(#5)',0.063637126],
+						],
+						color: '#7C8388'
 					}, {
 						type: 'column',
 						name: 'Greasy Wool',
 						id: 'greasy-wool',
 						data: [		
-							['China',0.216513366],
-							['Australia',0.165687914],
-							['New Zealand',0.07583076],
-							['United Kingdom',0.031251465],
-							['Iran (Islamic Republic of)',0.028264193]
-						]
+							{name: 'China<br>(#1)', y: 0.216513366, color: '#094677'},
+							['Australia<br>(#2)',0.165687914],
+							['New Zealand<br>(#3)',0.07583076],
+							['United Kingdom<br>(#4)',0.031251465],
+							['Iran (Islamic Republic of)<br>(#5)',0.028264193]
+						],
+						color: '#7C8388'
 					}
 				]}
 			});
@@ -193,7 +199,7 @@
 	</body>
 	
 	<footer><em>Sources: China Water Risk, FAO, China Textile Industry Development Report, USGS<br>
-	Note: Chemical Fibre figures include Olefin Fibres; Soda ash figures are estimated and preliminary; Cotton figures are esimated</em>
+	Note: Numbers in the parentheses present world ranking. Chemical Fibre figures include Olefin Fibres; Soda ash figures are estimated and preliminary; Cotton figures are esimated</em>
 	</footer>
 	
 </html>
